@@ -1,2 +1,5 @@
 *.pyc
 *.env
+
+### Virtual Environment ###
+blogenv/

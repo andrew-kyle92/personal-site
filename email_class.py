@@ -27,7 +27,7 @@ class SendEmail:
         if sender_data['name'] == "":
             subject = f"New email from Personal Site"
         else:
-            subject = f"New email from Personal sent by {sender_data['name']}"
+            subject = f"New email from Personal Site sent by {sender_data['name']}"
 
         # Message Container
         msg = EmailMessage()

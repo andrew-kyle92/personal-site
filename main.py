@@ -40,10 +40,6 @@ def index():
                 "phone": form.phone.data,
                 "message": form.message.data
             }
-            print(msg_info["name"])
-            print(msg_info["email"])
-            print(msg_info["phone"])
-            print(msg_info["message"])
             send_mail.send_email_message(msg_info)
             flash(message="Your message was sent, successfully!", category="Email Sent Success")
             return redirect(url_for("index"))
