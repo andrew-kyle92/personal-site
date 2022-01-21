@@ -8,16 +8,26 @@ from dotenv import dotenv_values
 
 from email_class import SendEmail
 import os
+import binascii
 from datetime import date
 from dateutil.relativedelta import relativedelta
 
 config = dotenv_values(".env")
 app = Flask(__name__)
 ckeditor = CKEditor(app)
-app.config['CKEDITOR_PKG_TYPE'] = 'full'
-Bootstrap(app)
-app.config["SECRET_KEY"] = config.get("SECRET_KEY")
 send_mail = SendEmail()
+Bootstrap(app)
+
+# ----------------- App Configurations ----------------- #
+app.config["SECRET_KEY"] = config.get("SECRET_KEY")
+app.config['CKEDITOR_PKG_TYPE'] = 'full'
+app.config["RECAPTCHA_PUBLIC_KEY"] = config.get("RECAPTCHA_PUBLIC_KEY")  # For Production
+app.config["RECAPTCHA_PRIVATE_KEY"] = config.get("RECAPTCHA_PRIVATE_KEY")  # For Production
+# app.config["RECAPTCHA_PUBLIC_KEY"] = config.get("RECAPTCHA_TEST_PUBLIC_KEY")  # For Production
+# app.config["RECAPTCHA_PRIVATE_KEY"] = config.get("RECAPTCHA_TEST_PRIVATE_KEY")  # For Production
+app.config["RECAPTCHA_PARAMETERS"] = {"hl": "en", "render": "onload"}
+# app.config["RECAPTCHA_DATA_ATTRS"] = {"theme": "dark"}
+# ----------------------------- ROUTES ----------------------------- #
 
 
 @app.route("/", methods=["POST", "GET"])
@@ -49,3 +59,4 @@ def index():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5050, debug=False)
+    # app.run(host="localhost", port=5050, debug=True)  # For Testing
