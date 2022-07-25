@@ -3,13 +3,13 @@ import datetime
 from flask import Flask, render_template, redirect, url_for, flash, request, abort
 from flask_bootstrap import Bootstrap
 from flask_ckeditor import CKEditor
+
 from forms import ContactForm
+
 from dotenv import dotenv_values
 
 from email_class import SendEmail
-import os
-import binascii
-from datetime import date
+
 from dateutil.relativedelta import relativedelta
 
 config = dotenv_values(".env")
@@ -23,10 +23,7 @@ app.config["SECRET_KEY"] = config.get("SECRET_KEY")
 app.config['CKEDITOR_PKG_TYPE'] = 'full'
 app.config["RECAPTCHA_PUBLIC_KEY"] = config.get("RECAPTCHA_PUBLIC_KEY")  # For Production
 app.config["RECAPTCHA_PRIVATE_KEY"] = config.get("RECAPTCHA_PRIVATE_KEY")  # For Production
-# app.config["RECAPTCHA_PUBLIC_KEY"] = config.get("RECAPTCHA_TEST_PUBLIC_KEY")  # For Production
-# app.config["RECAPTCHA_PRIVATE_KEY"] = config.get("RECAPTCHA_TEST_PRIVATE_KEY")  # For Production
 app.config["RECAPTCHA_PARAMETERS"] = {"hl": "en", "render": "onload"}
-# app.config["RECAPTCHA_DATA_ATTRS"] = {"theme": "dark"}
 # ----------------------------- ROUTES ----------------------------- #
 
 
